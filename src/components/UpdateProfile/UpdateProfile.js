@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { Form, Icon, Input, Button } from 'antd';
 import Nav from '../../components/Nav/Nav';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
+const FormItem = Form.Item;
 
 const mapStateToProps = state => ({
   user: state.user,
@@ -35,7 +36,25 @@ class UpdateProfile extends Component {
     return (
       <div>
         <Nav />
-        { content }
+        <Form onSubmit={this.handleSubmit} className="update-profile-form">
+          <FormItem>
+            <Input type="text" name="firstName" placeholder="First Name" />
+          </FormItem>
+          <FormItem>
+            <Input type="text" name="lastName" placeholder="Last Name" />
+          </FormItem>
+          <FormItem>
+            <Input type="text" name="email" placeholder="Email" />
+          </FormItem>
+          <FormItem>
+            <Input type="integer" name="phoneNumber" placeholder="Phone Number" />
+          </FormItem>
+          <FormItem>
+            <Button type="primarty" htmlType="submit" className="update-profile-button">
+            Update
+            </Button>
+          </FormItem>
+        </Form>
       </div>
     );
   }
