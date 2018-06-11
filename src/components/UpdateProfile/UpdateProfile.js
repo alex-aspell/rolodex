@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import { Form, Icon, Input, Button } from 'antd';
 import Nav from '../../components/Nav/Nav';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
@@ -31,6 +32,13 @@ class UpdateProfile extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     console.log(this.state);
+    axios.post('/profile', this.state)
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => {
+      console.log('post error', error);
+    })
   }
 
   componentDidMount() {
