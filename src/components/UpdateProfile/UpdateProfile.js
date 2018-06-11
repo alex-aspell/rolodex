@@ -10,6 +10,29 @@ const mapStateToProps = state => ({
 });
 
 class UpdateProfile extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      firstName: '',
+      lastName: '',
+      email: '',
+      phoneNumber: '',
+      linkedIn: '',
+    };
+  }
+
+  handleProfileChangeFor = profile => (event) => {
+    this.setState({
+      [profile]: event.target.value
+    })
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(this.state);
+  }
+
   componentDidMount() {
     this.props.dispatch({type: USER_ACTIONS.FETCH_USER});
   }
@@ -38,16 +61,19 @@ class UpdateProfile extends Component {
         <Nav />
         <Form onSubmit={this.handleSubmit} className="update-profile-form">
           <FormItem>
-            <Input type="text" name="firstName" placeholder="First Name" />
+            <Input type="text" name="firstName" placeholder="First Name" onChange={this.handleProfileChangeFor('firstName')} />
           </FormItem>
           <FormItem>
-            <Input type="text" name="lastName" placeholder="Last Name" />
+            <Input type="text" name="lastName" placeholder="Last Name" onChange={this.handleProfileChangeFor('lastName')} />
           </FormItem>
           <FormItem>
-            <Input type="text" name="email" placeholder="Email" />
+            <Input type="text" name="email" placeholder="Email" onChange={this.handleProfileChangeFor('email')} />
           </FormItem>
           <FormItem>
-            <Input type="integer" name="phoneNumber" placeholder="Phone Number" />
+            <Input type="integer" name="phoneNumber" placeholder="Phone Number" onChange={this.handleProfileChangeFor('phoneNumber')} />
+          </FormItem>
+          <FormItem>
+            <Input type="integer" name="linkedIn" placeholder="LinkedIn" onChange={this.handleProfileChangeFor('linkedIn')} />
           </FormItem>
           <FormItem>
             <Button type="primarty" htmlType="submit" className="update-profile-button">
