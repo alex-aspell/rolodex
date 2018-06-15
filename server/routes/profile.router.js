@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
     let userProfile = req.body;
     const sqlText = `INSERT INTO profile (user_id, first_name, last_name, email, phone_number, linked_in) 
     VALUES ($1, $2, $3, $4, $5, $6);`;
-    console.log(userProfile.firstName);
+    console.log(req.user.id, userProfile.firstName, userProfile.lastName, userProfile.email, userProfile.phoneNumber, userProfile.linkedIn);
     pool.query(sqlText, [req.user.id, userProfile.firstName, userProfile.lastName, userProfile.email, userProfile.phoneNumber, userProfile.linkedIn])
     .then((result) => {
         console.log('profile update');
