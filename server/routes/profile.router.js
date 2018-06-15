@@ -3,12 +3,12 @@ const pool = require('../modules/pool');
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/get', (req, res) => {
     
 });
 
 
-router.post('/', (req, res) => {
+router.post('/post', (req, res) => {
     console.log('profile', req.body)
     if (req.isAuthenticated()){
     let userProfile = req.body;

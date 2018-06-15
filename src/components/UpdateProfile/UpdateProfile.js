@@ -32,7 +32,7 @@ class UpdateProfile extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     console.log(this.state);
-    axios.post('/profile', this.state)
+    axios.post('/profile/post', this.state)
     .then(response => {
       console.log(response);
     })

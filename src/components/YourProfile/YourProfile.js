@@ -27,6 +27,17 @@ class YourProfile extends Component {
     // this.props.history.push('home');
   }
 
+getProfile = () => {
+  axios.get('/get')
+  .then(response => {
+    console.log('get profile', response.data);
+    let userProfile = response.data;
+  })
+  .catch(error => {
+    console.log('did not get profile', error);
+  })
+}
+
   render() {
     let content = null;
 
