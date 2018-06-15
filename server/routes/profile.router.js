@@ -4,7 +4,20 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 const router = express.Router();
 
 router.get('/get', (req, res) => {
-    
+    if (req.isAuthenticated()){
+    const sqlText = `SELECT * FROM profile WHERE user_id = ($1);`;
+    pool.query(sqlText, [req.user.id])
+    .then(result => {
+        console.log('Got profile', request.user.id);
+        res.send(result.rows);
+    })
+    .catch(error => {
+        console.log('Get profile error', error);
+        res.sendStatus(500); 
+    })
+    }else {
+        res.sendStatus(403);
+    }
 });
 
 
