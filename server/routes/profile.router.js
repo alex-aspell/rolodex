@@ -5,10 +5,11 @@ const router = express.Router();
 
 router.get('/get', (req, res) => {
     if (req.isAuthenticated()){
+    console.log('getting profile');
     const sqlText = `SELECT * FROM profile WHERE user_id = ($1);`;
     pool.query(sqlText, [req.user.id])
     .then(result => {
-        console.log('Got profile', request.user.id);
+        console.log('Got profile', req.user.id);
         res.send(result.rows);
     })
     .catch(error => {
