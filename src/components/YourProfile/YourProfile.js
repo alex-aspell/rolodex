@@ -34,6 +34,7 @@ getProfile = () => {
   .then(response => {
     console.log('get profile', response.data);
     let userProfile = response.data;
+    console.log('user profile', userProfile);
   })
   .catch(error => {
     console.log('did not get profile', error);
@@ -41,31 +42,38 @@ getProfile = () => {
 }
 
   render() {
-    let content = null;
+    // let content = null;
 
-    if (this.props.user.userName) {
-      content = (
+    // if (this.props.user.userName) {
+    //   content = (
+    //     <div>
+    //       <h1
+    //         id="welcome"
+    //       >
+    //         Welcome, { this.props.user.userName }!
+    //       </h1>
+    //       <button
+    //         onClick={this.logout}
+    //       >
+    //         Log Out
+    //       </button>
+    //     </div>
+    //   );
+    // }
+    let content = null
+    // if (this.state.userProfile){
+    //   content = (
+    //   <div>
+    //     <Nav />
+    //     <UserCard userCard={this.state.userProfile}/>
+    //   </div>
+    //   );
+    // }
+      return(
         <div>
-          <h1
-            id="welcome"
-          >
-            Welcome, { this.props.user.userName }!
-          </h1>
-          <button
-            onClick={this.logout}
-          >
-            Log Out
-          </button>
+        {content}
         </div>
-      );
-    }
-
-    return (
-      <div>
-        <Nav />
-        <UserCard userCard={this.state.userProfile}/>
-      </div>
-    );
+      ); 
   }
 }
 
