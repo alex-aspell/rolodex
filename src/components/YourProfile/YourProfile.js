@@ -13,6 +13,13 @@ const mapStateToProps = state => ({
 });
 
 class YourProfile extends Component {
+  constructor() {
+    super();
+    // Keep track of the student list
+    this.state = {
+      userProfile: []
+    };
+  }
   componentDidMount() {
     this.props.dispatch({ type: USER_ACTIONS.FETCH_USER });
     this.getProfile();
@@ -34,7 +41,6 @@ getProfile = () => {
   .then(response => {
     console.log('get profile', response.data);
     let userProfile = response.data;
-    console.log('user profile', userProfile);
   })
   .catch(error => {
     console.log('did not get profile', error);
@@ -61,17 +67,17 @@ getProfile = () => {
     //   );
     // }
     let content = null
-    // if (this.state.userProfile){
-    //   content = (
-    //   <div>
-    //     <Nav />
-    //     <UserCard userCard={this.state.userProfile}/>
-    //   </div>
-    //   );
-    // }
+    if (this.state.userProfile){
+      content = (
+      <div>
+        <UserCard userCard={this.state.userProfile}/>
+      </div>
+      );
+    }
       return(
         <div>
-        {content}
+          <Nav />
+          {content}
         </div>
       ); 
   }
