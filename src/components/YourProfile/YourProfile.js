@@ -40,7 +40,9 @@ getProfile = () => {
   axios.get('/profile/get')
   .then(response => {
     console.log('get profile', response.data);
-    let userProfile = response.data;
+    this.setState({
+      userProfile: response.data
+    })
   })
   .catch(error => {
     console.log('did not get profile', error);
