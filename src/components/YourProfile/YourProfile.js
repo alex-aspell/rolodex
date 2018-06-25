@@ -78,10 +78,12 @@ getProfile = () => {
       console.log('user info', this.state.userProfile);
       content = (
       <div>
-        {/* <Card title="User Card">
-          {this.state.userProfile.map((user,i) => <Card.Grid style={gridStyle} key={i}>{user.first_name} {user.last_name}</Card.Grid>)}
-        </Card> */}
-        {this.state.userProfile.map((user,i) => <p key={i}>{user.first_name}</p>)}
+        <Card title="User Card">
+          {this.state.userProfile.map((user,i) => <div key={i}><Card.Grid style={gridStyle} >{user.first_name} {user.last_name}</Card.Grid>
+        <Card.Grid style={gridStyle}>{user.email}</Card.Grid>
+        <Card.Grid style={gridStyle}>{user.phone_number}</Card.Grid>
+        <Card.Grid style={gridStyle}>{user.linked_in}</Card.Grid></div>)}
+        </Card>
       </div>
       );
     }
