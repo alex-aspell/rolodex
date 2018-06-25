@@ -4,7 +4,12 @@ import axios from 'axios';
 import Nav from '../../components/Nav/Nav';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
-import UserCard from '../YourCard/YourCard';
+// import UserCard from '../YourCard/YourCard';
+import { Card } from 'antd';
+const gridStyle = {
+    width: '100%',
+    textAlign: 'center',
+  };
 
 
 
@@ -40,7 +45,9 @@ getProfile = () => {
   axios.get('/profile/get')
   .then(response => {
     console.log('get profile', response.data);
-    let userProfile = response.data;
+    this.setState({
+      userProfile: response.data
+    })
   })
   .catch(error => {
     console.log('did not get profile', error);
@@ -68,9 +75,13 @@ getProfile = () => {
     // }
     let content = null
     if (this.state.userProfile){
+      console.log('user info', this.state.userProfile);
       content = (
       <div>
-        <UserCard userCard={this.state.userProfile}/>
+        {/* <Card title="User Card">
+          {this.state.userProfile.map((user,i) => <Card.Grid style={gridStyle} key={i}>{user.first_name} {user.last_name}</Card.Grid>)}
+        </Card> */}
+        {this.state.userProfile.map((user,i) => <p key={i}>{user.first_name}</p>)}
       </div>
       );
     }
