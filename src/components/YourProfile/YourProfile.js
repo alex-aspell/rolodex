@@ -4,7 +4,12 @@ import axios from 'axios';
 import Nav from '../../components/Nav/Nav';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
-import UserCard from '../YourCard/YourCard';
+// import UserCard from '../YourCard/YourCard';
+import { Card } from 'antd';
+const gridStyle = {
+    width: '100%',
+    textAlign: 'center',
+  };
 
 
 
@@ -70,9 +75,15 @@ getProfile = () => {
     // }
     let content = null
     if (this.state.userProfile){
+      console.log('user info', this.state.userProfile);
       content = (
       <div>
-        <UserCard userCard={this.state.userProfile}/>
+        <Card title="User Card">
+          {this.state.userProfile.map((user,i) => <div key={i}><Card.Grid style={gridStyle} >{user.first_name} {user.last_name}</Card.Grid>
+        <Card.Grid style={gridStyle}>{user.email}</Card.Grid>
+        <Card.Grid style={gridStyle}>{user.phone_number}</Card.Grid>
+        <Card.Grid style={gridStyle}>{user.linked_in}</Card.Grid></div>)}
+        </Card>
       </div>
       );
     }
